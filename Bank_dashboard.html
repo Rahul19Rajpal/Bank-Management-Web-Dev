@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="Bank_dashboard.css">
+</head>
+
+<body>
+    <div class="Heading">
+        <h1 class="Headtext1">रर बैंक RR Bank</h1>
+        <p class="Headtext2">भारत सरकार का उपक्रम &nbsp; A government Bank of Indian Undertaking</p>
+        <a href="Bankfront.html" class="top-right-image"><img src="Bank logo.png" class="top-right-image"
+                alt="Not working"></a>
+        <p class="Headtext2">Together We Can</p>
+        <a href="https://www.whatsapp.com/">
+            <img src="Whatsapp.jpg" alt="Whatsapp Logo" class="contact1" height="50px" width="50px"
+                style="border-radius: 50%;">
+        </a>
+        <p class="contact">Contact us<br> 9358572200</p>
+        <p class="clock" id="clock">clock</p>
+    </div>
+    <div class="container">
+        <h1>User Dashboard</h1>
+        <div id="successMessage" style="display: none; color: green;">Transaction Successful</div>
+        <div class="options">
+            <a href="#" class="money" onclick="showAddMoney() ">Add Money</a>
+            <a href="#" class="money" onclick="showWithdrawMoney()">Withdraw Money</a>
+            <a href="#" class="money" onclick="viewBalance()">View Balance</a>
+        </div>
+        <div id="addMoneyFormContainer" style="display: none;">
+            <h2>Add Money</h2>
+            <form id="addMoneyForm" onsubmit="return addMoney()">
+                <label for="addAmount">Amount:</label>
+                <input type="number" id="addAmount" name="addAmount" required>
+                <label for="pin">PIN:</label> <!-- Modified here -->
+                <input type="text" id="pin" name="pin" required> <!-- Modified here -->
+                <input type="submit" value="Add">
+            </form>
+        </div>
+        <div id="withdrawMoneyFormContainer" style="display: none;">
+            <h2>Withdraw Money</h2>
+            <form id="withdrawMoneyForm" onsubmit="return withdrawMoney()">
+                <label for="withdrawAmount">Amount:</label>
+                <input type="number" id="withdrawAmount" name="withdrawAmount" required>
+                <label for="wpin">PIN:</label> <!-- Modified here -->
+                <input type="text" id="wpin" name="wpin" required> <!-- Modified here -->
+                <input type="submit" value="Withdraw">
+            </form>
+        </div>
+        <div id="viewBalanceContainer" style="display: none;">
+            <h2>View Balance</h2>
+            <p id="balance"></p>
+            <label for="vpin">Enter PIN:</label>
+            <input type="text" id="vpin" name="vpin" required>
+            <button onclick="viewBalance()">View Balance</button>
+        </div>
+
+    </div>
+    <footer>
+        <div class="footer-container">
+            <ul class="footerlist">
+                <br>
+                <div class="mainbox">
+                    <div class="box0">
+                        <div class="item" align="center">
+                            <li>
+                                <a href="https://www.linkedin.com">
+                                    <img src="Linkedin.jpg" alt="LinkedIn Logo" class="logo" height="60px" width="60px"
+                                        style="border-radius: 50%;">
+                                </a>
+                            </li>
+                        </div>
+
+                    </div>
+                    <div class="box1">
+                        <div class="item">
+                            <li>
+                                <a href="https://www.whatsapp.com/">
+                                    <img src="Whatsapp.jpg" alt="Whatsapp Logo" class="logo" height="60px" width="60px"
+                                        style="border-radius: 50%;">
+                                </a>
+                            </li>
+                        </div>
+                        <div class="item">
+                            <li>
+                                <a href="https://mail.google.com/mail/u/0/#inbox">
+                                    <img src="Mail.jpg" alt="Mail Logo" class="logo" height="60px" width="60px"
+                                        style="border-radius: 50%;">
+                                </a>
+                            </li>
+                        </div>
+                    </div>
+                    <div class="box2">
+                        <li>
+                            <a href="https://www.instagram.com">
+                                <img src="Instagram.png.jpg" alt="Intsa Logo" class="logo" height="60px" width="60px"
+                                    style="border-radius: 50%;">
+                            </a>
+                        </li>
+                    </div>
+                </div>
+            </ul>
+            <hr>
+            <div class="copyright">
+                &copy; 2024, RR Bank, All rights reserved.
+            </div>
+        </div>
+    </footer>
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            const timeString = `${hours}:${minutes}:${seconds}`;
+            document.getElementById('clock').textContent = timeString;
+        }
+
+        // Update the clock every second
+        setInterval(updateClock, 1000);
+
+        // Initial call to display the clock
+        updateClock();
+        // Function to show the Add Money form
+        function showAddMoney() {
+            document.getElementById("addMoneyFormContainer").style.display = "block";
+            document.getElementById("withdrawMoneyFormContainer").style.display = "none";
+            document.getElementById("viewBalanceContainer").style.display = "none";
+        }
+
+        // Function to show the Withdraw Money form
+        function showWithdrawMoney() {
+            document.getElementById("addMoneyFormContainer").style.display = "none";
+            document.getElementById("withdrawMoneyFormContainer").style.display = "block";
+            document.getElementById("viewBalanceContainer").style.display = "none";
+        }
+
+        // Function to submit the Add Money form
+        function addMoney() {
+            const pin = document.getElementById('pin').value;
+            const amount = parseFloat(document.getElementById('addAmount').value); // Parse as number
+
+            // Make a POST request to the server to add money
+            fetch(`/add_money`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ pin, amount })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else if (response.status === 400) { // Checking for status code 400 (Bad Request)
+                        return response.json(); // This will parse the response body as JSON
+                    } else {
+                        throw new Error('Pin Incorrect');
+                    }
+                })
+                .then(data => {
+                    // Check the message and update UI accordingly
+                    if (data && data.message === 'Money added successfully') {
+                        // Transaction successful, update UI with new balance
+                        document.getElementById('successMessage').innerText = data.message + '. Your new balance is: ' + data.balance;
+                        document.getElementById('successMessage').style.color = 'green';
+                        document.getElementById('successMessage').style.display = 'block';
+                    } else if (data && data.message === 'Incorrect PIN') {
+                        // Handle incorrect PIN error
+                        document.getElementById('successMessage').innerText = 'Incorrect PIN';
+                        document.getElementById('successMessage').style.color = 'red';
+                        document.getElementById('successMessage').style.display = 'block';
+                    } else {
+                        // Handle other errors or unexpected response
+                        document.getElementById('successMessage').innerText = 'Unexpected response from server';
+                        document.getElementById('successMessage').style.color = 'red';
+                        document.getElementById('successMessage').style.display = 'block';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error adding money:', error);
+                    // Handle fetch error
+                    document.getElementById('successMessage').innerText = 'Error: ' + error.message;
+                    document.getElementById('successMessage').style.color = 'red';
+                    document.getElementById('successMessage').style.display = 'block';
+                });
+
+            return false; // Prevent form submission
+        }
+
+
+        // Function to submit the Withdraw Money form
+        function withdrawMoney() {
+            const pin = document.getElementById('wpin').value;
+            const amount = parseFloat(document.getElementById('withdrawAmount').value); // Parse as number
+
+            fetch(`/withdraw-money`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ pin, amount })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else if (response.status === 400) { // Checking for status code 400 (Bad Request)
+                        return response.json(); // This will parse the response body as JSON
+                    } else {
+                        throw new Error('Pin Incorrect');
+                    }
+                })
+                .then(data => {
+                    // Check if the response indicates insufficient balance
+                    if (data && data.message === 'Insufficient balance') {
+                        // Handle insufficient balance error
+                        document.getElementById('successMessage').innerText = 'Insufficient balance';
+                        document.getElementById('successMessage').style.color = 'red';
+                        document.getElementById('successMessage').style.display = 'block';
+                    }
+                    else if (data && data.message === 'Pin Incorrect') {
+                        // Handle incorrect PIN error
+                        document.getElementById('successMessage').innerText = 'Incorrect PIN';
+                        document.getElementById('successMessage').style.color = 'red';
+                        document.getElementById('successMessage').style.display = 'block';
+                    } else {
+                        // Check the message and update UI accordingly
+                        if (data && data.message === 'Money withdrawn successfully') {
+                            // Transaction successful, update UI with new balance
+                            document.getElementById('successMessage').innerText = data.message + '. Your new balance is: ' + data.balance;
+                            document.getElementById('successMessage').style.color = 'green';
+                            document.getElementById('successMessage').style.display = 'block';
+                        } else {
+                            // Transaction failed, display error message
+                            document.getElementById('successMessage').innerText = data.message;
+                            document.getElementById('successMessage').style.color = 'red';
+                            document.getElementById('successMessage').style.display = 'block';
+                        }
+                    }
+                })
+                .catch(error => {
+                    // Handle fetch error
+                    document.getElementById('successMessage').innerText = 'Error: ' + error.message;
+                    document.getElementById('successMessage').style.color = 'red';
+                    document.getElementById('successMessage').style.display = 'block';
+                });
+
+            return false;
+        }
+
+
+        // Function to view balance
+        function viewBalance() {
+            document.getElementById("addMoneyFormContainer").style.display = "none";
+            document.getElementById("withdrawMoneyFormContainer").style.display = "none";
+            document.getElementById("viewBalanceContainer").style.display = "block";
+
+            const balanceContainer = document.getElementById('balance');
+            const pin = document.getElementById('vpin').value;
+
+
+            // Make an AJAX request to fetch the balance
+            fetch(`/view-details?pin=${pin}`)
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    else if (response.status === 404) {
+                        throw new Error('Incorrect Pin');
+                    } else {
+                        throw new Error('Network response was not ok.');
+                    }
+                })
+                .then(data => {
+                    if (data && typeof data.Balance === 'number') {
+                        balanceContainer.innerText = `Your balance is: ${data.Balance}`;
+                    } else {
+                        throw new Error('User not found or invalid PIN');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error.message);
+                    balanceContainer.innerText = error.message;
+                });
+        }
+
+
+    </script>
+</body>
+
+</html>

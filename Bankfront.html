@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RR Bank</title>
+    <link rel="stylesheet" href="Bankfront.css">
+</head>
+
+<body>
+    <div class="Heading">
+        <h1 class="Headtext1log">रर बैंक RR Bank</h1>
+        <p class="Headtext2log">भारत सरकार का उपक्रम &nbsp; A government Bank of Indian Undertaking</p>
+        <a href="Bankfront.html"><img src="Bank logo.png" class="top-right-image" alt="Not working"></a>
+        <p class="Headtext2">Together We Can</p>
+        <a href="https://www.whatsapp.com/">
+            <img src="Whatsapp.jpg" alt="Whatsapp Logo" class="contact1" height="50px" width="50px"
+                style="border-radius: 50%;">
+        </a>
+        <p class="contact">Contact us<br> 9358572200</p>
+        <p class="clock" id="clock">clock</p>
+    </div>
+    <div>
+        <p class="dem2">If slowness is observed during login page loading. Please refresh the page for better
+            experience.</p>
+    </div>
+    <div class="Savings">
+        <h3 class="sav1">Savings Account</h3>
+        <p class="sav2">Earn up to 7.25% interest p.a. with Monthly Interest Payout</p>
+        <a class="sav3" href="http://localhost:3000/" target="_blank">Open Account</a>
+    </div>
+    <div class="Savings">
+        <h3 class="sav1">Account Login</h3>
+        <p class="sav2">Welcome to RR Bank</p>
+        <a class="sav4" href="http://localhost:3001/" target="_blank">Net Banking - Login</a>
+    </div>
+    <div class="dem9">
+        <p class="dem8" style="white-space: nowrap;"> | RR Bank never asks for your Card/PIN/OTP/CVV details on phone,
+            message or email. Please do not
+            click on links received on your email or mobile asking your Bank/Card details. |</p>
+    </div>
+    <footer>
+        <div class="footer-container">
+            <ul class="footerlist">
+                <br>
+                <div class="mainbox">
+                    <div class="box0">
+                        <div class="item" align="center">
+                            <li>
+                                <a href="https://www.linkedin.com">
+                                    <img src="Linkedin.jpg" alt="LinkedIn Logo" class="logo" height="60px" width="60px"
+                                        style="border-radius: 50%;">
+                                </a>
+                            </li>
+                        </div>
+
+                    </div>
+                    <div class="box1">
+                        <div class="item">
+                            <li>
+                                <a href="https://www.whatsapp.com/">
+                                    <img src="Whatsapp.jpg" alt="Whatsapp Logo" class="logo" height="60px" width="60px"
+                                        style="border-radius: 50%;">
+                                </a>
+                            </li>
+                        </div>
+                        <div class="item">
+                            <li>
+                                <a href="https://mail.google.com/mail/u/0/#inbox">
+                                    <img src="Mail.jpg" alt="Mail Logo" class="logo" height="60px" width="60px"
+                                        style="border-radius: 50%;">
+                                </a>
+                            </li>
+                        </div>
+                    </div>
+                    <div class="box2">
+                        <li>
+                            <a href="https://www.instagram.com">
+                                <img src="Instagram.png.jpg" alt="Intsa Logo" class="logo" height="60px" width="60px"
+                                    style="border-radius: 50%;">
+                            </a>
+                        </li>
+                    </div>
+                </div>
+            </ul>
+            <hr>
+            <div class="copyright">
+                &copy; 2024, RR Bank, All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            const timeString = `${hours}:${minutes}:${seconds}`;
+            document.getElementById('clock').textContent = timeString;
+        }
+
+        // Update the clock every second
+        setInterval(updateClock, 1000);
+
+        // Initial call to display the clock
+        updateClock();
+    </script>
+</body>
+
+</html>

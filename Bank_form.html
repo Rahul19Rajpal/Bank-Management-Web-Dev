@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Account Creation Form</title>
+    <link rel="stylesheet" href="Bank_form.css">
+</head>
+
+<body>
+    <div id="successMessage" style="display: none; color: green;">Account created successfully! Your account number is:
+        <span id="generatedAccountNumber"></span>
+    </div>
+    <div class="Heading">
+        <h1 class="Headtext1">रर बैंक RR Bank</h1>
+        <p class="Headtext2">भारत सरकार का उपक्रम &nbsp; A government Bank of Indian Undertaking</p>
+        <a href="Bankfront.html"><img src="Bank logo.png" class="top-right-image" alt="Not working"></a>
+        <p class="Headtext2">Together We Can</p>
+        <p class="Headtext3">Welcome to www.rrbank.com</p>
+        <p class="Headtext4">Toll Free HepLine: 9358572200</p>
+        <p class="clock" id="clock">clock</p>
+    </div>
+    <div>
+        <img src="form.png" class="login-form-container2" alt="Not working">
+    </div>
+    <div class="background-container">
+        <div class="login-form-container">
+            <div class="container">
+                <h2>Create Bank Account</h2>
+                <form id="bankForm" action="/register" method="post">
+
+                    <label for="fullName">Full Name:</label>
+                    <input type="text" id="fullName" name="fullName" pattern="[a-zA-Z\s]+"
+                        title="Only letters are allowed" required>
+
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" name="email" required>
+
+                    <label for="phone">Phone Number:</label>
+                    <input type="text" id="phone" name="phone" pattern="[0-9]{10}"
+                        title="Please enter a 10-digit Mobile number" required>
+
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="dob" required>
+
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password"
+                        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                        title="Password must contain at least 8 characters, including one uppercase letter, one lowercase letter, one number, and one special character (@$!%*?&)."
+                        required>
+
+                    <label for="gender">Gender:</label>
+                    <input type="radio" id="male" name="gender" value="male">
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="gender" value="female">
+                    <label for="female">Female</label>
+                    <input type="radio" id="other" name="gender" value="other">
+                    <label for="other">Other</label>
+
+                    <br><br><br>
+                    <label for="Aadhaar">Aadhaar Card:</label>
+                    <input type="text" id="aadhaar" name="aadhaar" pattern="[0-9]{12}"
+                        title="Please enter a 12-digit Aadhaar number" required>
+
+                    <label for="Balance">Balance:</label>
+                    <input type="number" id="Balance" name="Balance" pattern="[0-9]*"
+                        title="Please enter a positive number" required>
+
+                    <label for="pin">Pin:</label>
+                    <input type="text" id="pin" name="pin" pattern="[0-9]{4}" title="Please enter a 4-digit PIN"
+                        required>
+
+                    <input type="submit" value="Create Account">
+                    <input type="reset" value="Reset">
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-container">
+            <ul class="footerlist">
+                <br>
+                <div class="mainbox">
+                    <div class="box0">
+                        <div class="item" align="center">
+                            <li>
+                                <a href="https://www.linkedin.com">
+                                    <img src="Linkedin.jpg" alt="LinkedIn Logo" class="logo" height="60px" width="60px"
+                                        style="border-radius: 50%;">
+                                </a>
+                            </li>
+                        </div>
+
+                    </div>
+                    <div class="box1">
+                        <div class="item">
+                            <li>
+                                <a href="https://www.whatsapp.com/">
+                                    <img src="Whatsapp.jpg" alt="Whatsapp Logo" class="logo" height="60px" width="60px"
+                                        style="border-radius: 50%;">
+                                </a>
+                            </li>
+                        </div>
+                        <div class="item">
+                            <li>
+                                <a href="https://mail.google.com/mail/u/0/#inbox">
+                                    <img src="Mail.jpg" alt="Mail Logo" class="logo" height="60px" width="60px"
+                                        style="border-radius: 50%;">
+                                </a>
+                            </li>
+                        </div>
+                    </div>
+                    <div class="box2">
+                        <li>
+                            <a href="https://www.instagram.com">
+                                <img src="Instagram.png.jpg" alt="Intsa Logo" class="logo" height="60px" width="60px"
+                                    style="border-radius: 50%;">
+                            </a>
+                        </li>
+                    </div>
+                </div>
+            </ul>
+            <hr>
+            <div class="copyright">
+                &copy; 2024, RR Bank, All rights reserved.
+            </div>
+        </div>
+    </footer>
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            const timeString = `${hours}:${minutes}:${seconds}`;
+            document.getElementById('clock').textContent = timeString;
+        }
+
+        // Update the clock every second
+        setInterval(updateClock, 1000);
+
+        // Initial call to display the clock
+        updateClock();
+        // JavaScript
+        function populateAccountNumber(accountNumber) {
+            document.getElementById('accountNumber').value = accountNumber;
+        }
+
+        
+        fetch('/register', {
+            method: 'POST',
+            body: formData  
+        })
+            .then(response => response.text())
+            .then(data => {
+                // Extract the account number from the response data
+                const accountNumber = data.split(':')[1].trim();
+                // Call the function to populate the account number in the input field
+                populateAccountNumber(accountNumber);
+                document.getElementById('successMessage').style.display = 'block';
+                document.getElementById('generatedAccountNumber').textContent = accountNumber;
+            })
+            .catch(error => console.error('Error:', error));
+
+        function populateAccountNumber(accountNumber) {
+            document.getElementById('accountNumber').value = accountNumber;
+        }
+    </script>
+</body>
+</html>

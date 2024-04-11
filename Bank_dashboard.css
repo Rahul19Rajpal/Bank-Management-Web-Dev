@@ -1,0 +1,173 @@
+.Heading {
+    top: 0;
+    z-index: 100;
+    background: #09c6f9;
+    position: sticky;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px black;
+}
+
+.Headtext1 {
+    position: relative;
+    text-align: right;
+    color: white;
+    font-size: 70px;
+    font-family: Open Sans, sans-serif;
+    padding-top: 10px;
+    padding-right: 110px;
+    margin: 0px;
+    filter: drop-shadow(2px 2px 1px black);
+}
+
+.Headtext2 {
+    text-align: right;
+    color: white;
+    font-size: 15px;
+    font-family: Open Sans, sans-serif;
+    padding-right: 110px;
+    margin-top: 0px;
+}
+
+.top-right-image {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 90px;
+    width: 90px;
+}
+
+.Headtext3 {
+    position: absolute;
+    text-align: left;
+    color: white;
+    font-size: 30px;
+    font-family: Open Sans, sans-serif;
+    top: 0px;
+    left: 20px;
+    filter: drop-shadow(2px 2px 1px black);
+}
+
+.Headtext4 {
+    position: absolute;
+    text-align: left;
+    color: white;
+    font-size: 30px;
+    font-family: Open Sans, sans-serif;
+    top: 35px;
+    left: 20px;
+    filter: drop-shadow(2px 2px 1px black);
+}
+
+.clock {
+    font-family: Arial, sans-serif;
+    position: absolute;
+    font-size: 25px;
+    font-weight: bold;
+    color: #333;
+    top: 80px;
+    left: 80px;
+}
+
+.contact {
+    position: absolute;
+    top: 0px;
+    left: 50px;
+    color: white;
+    font-size: 25px;
+    font-family: Open Sans, sans-serif;
+    text-decoration: underline;
+}
+
+.contact:hover {
+    color: #008ad2;
+}
+
+.contact1 {
+    position: absolute;
+    top: 30px;
+    left: 200px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 30px;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.money {
+    display: block;
+    padding: 15px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.money:hover {
+    background-color: #0056b3;
+}
+
+.footer-container {
+    margin-top: 50px;
+    background-color: #fecc00;
+    color: #008ad2;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 10px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.footerlist {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.mainbox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: auto;
+    justify-content: center;
+    text-align: center;
+}
+
+.box0,
+.box1,
+.box2 {
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.item {
+    margin-right: 5px;
+}
+
+.logo {
+    height: 40px;
+    width: 40px;
+}

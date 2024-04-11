@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RR Bank</title>
+    <link rel="stylesheet" href="Bank_login.css">
+    
+</head>
+
+<body>
+    <div class="Heading">
+        <h1 class="Headtext1">रर बैंक RR Bank</h1>
+        <p class="Headtext2">भारत सरकार का उपक्रम &nbsp; A government Bank of Indian Undertaking</p>
+        <a href="Bankfront.html"><img src="Bank logo.png" class="top-right-image" alt="Not working"></a>
+        <p class="Headtext2">Together We Can</p>
+        <a href="https://www.whatsapp.com/">
+            <img src="Whatsapp.jpg" alt="Whatsapp Logo" class="contact1" height="50px" width="50px"
+                style="border-radius: 50%;">
+        </a>
+        <p class="contact">Contact us<br> 9358572200</p>
+        <p class="clock" id="clock">clock</p>
+        
+    </div>
+    <div class="Login-box">
+        <form id="bankForm" action="/login" method="post">
+            <h2 class="Log-box-head1">Welcome To</h2>
+            <h2 class="Log-box-head2">Net Banking</h2>
+        
+            <!-- Signup fields -->
+            <label for="fullName" ></label>
+            <input type="text" class="Login-box1" name="fullName" placeholder="Username" pattern="[a-zA-Z\s]+" title="Only letters are allowed" required><br>        
+            <label for="password"></label>
+            <input type="password"  class="Login-box1" name="password" placeholder="Password"pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+            title="Password must contain at least 8 characters, including one uppercase letter, one lowercase letter, one number, and one special character (@$!%*?&)." required><br>
+        
+            <!-- Signup button -->
+            <input type="submit" value="SIGN UP" class="button_style">
+        
+            <!-- Reset button -->
+            <button type="reset" class="button_style">RESET</button>
+        </form>
+        
+    </div>
+    <div class="What-box">
+        <h1 align="center">WHAT'S NEW ?</h1>
+        <hr>
+        <div class="write">
+            <h4><u>Exclusive Features:</u></h4>
+            <ol>
+                <li>Easy to use Offline OTP and OTP Over Call functionalities are available in addition to traditional
+                    SMS OTP.
+                    Shop at Ease - Compare the prices.</li>
+                <li>Get SMS transactions updates in your regional language.
+                    Now just complete Re-KYC online hassle free.</li>
+                <li>Email Update and Verify online.</li>
+            </ol>
+            <h4><u>Major Features:</u></h4>
+            <ol>
+                <li>Loan against Deposits provide instant loan for your needs.</li>
+                <li>E-mail and SMS alerts for Net banking failed transactions.</li>
+                <li>Bulk transfer payments E-receipt delivery to beneficiary e-mail also available.</li>
+            </ol>
+            <h4><u> New Features available:</u></h4>
+            <ol>
+                <li>Easy to use Offline OTP and OTP Over Call functionalities are available in addition to traditional
+                    SMS OTP.
+                    Shop at Ease - Compare the prices.</li>
+                <li> E-mail and SMS alerts for Net banking failed transactions.</li>
+                <li>Email Update and Verify online.</li>
+            </ol>
+        </div>
+    </div>
+    <div class="Img-box">
+        <img src="Formback.png" class="mySlides" style="width:100%">
+        <img src="Login2.png" class="mySlides" style="width:100%">
+        <img src="Login3.png" class="mySlides" style="width:100%">
+        <img src="Login4.png" class="mySlides" style="width:100%">
+        <script>
+            var myIndex = 0;
+            carousel();
+
+            function carousel() {
+                var i;
+                var x = document.getElementsByClassName("mySlides");
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.display = "none";
+                }
+                myIndex++;
+                if (myIndex > x.length) { myIndex = 1 }
+                x[myIndex - 1].style.display = "block";
+                setTimeout(carousel, 2000); // Change image every 2 seconds
+            }
+            function updateClock() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            const timeString = `${hours}:${minutes}:${seconds}`;
+            document.getElementById('clock').textContent = timeString;
+        }
+
+        // Update the clock every second
+        setInterval(updateClock, 1000);
+
+        // Initial call to display the clock
+        updateClock();
+        </script>
+    </div>
+    <footer>
+        <div class="footer-container">
+            <ul class="footerlist">
+                <br>
+                <div class="mainbox">
+                    <div class="box0">
+                        <div class="item" align="center">
+                            <li>
+                                <a href="https://www.linkedin.com">
+                                    <img src="Linkedin.jpg" alt="LinkedIn Logo" class="logo" height="60px" width="60px"
+                                        style="border-radius: 50%;">
+                                </a>
+                            </li>
+                        </div>
+
+                    </div>
+                    <div class="box1">
+                        <div class="item">
+                            <li>
+                                <a href="https://www.whatsapp.com/">
+                                    <img src="Whatsapp.jpg" alt="Whatsapp Logo" class="logo" height="60px" width="60px"
+                                        style="border-radius: 50%;">
+                                </a>
+                            </li>
+                        </div>
+                        <div class="item">
+                            <li>
+                                <a href="https://mail.google.com/mail/u/0/#inbox">
+                                    <img src="Mail.jpg" alt="Mail Logo" class="logo" height="60px" width="60px"
+                                        style="border-radius: 50%;">
+                                </a>
+                            </li>
+                        </div>
+                    </div>
+                    <div class="box2">
+                        <li>
+                            <a href="https://www.instagram.com">
+                                <img src="Instagram.png.jpg" alt="Intsa Logo" class="logo" height="60px" width="60px"
+                                    style="border-radius: 50%;">
+                            </a>
+                        </li>
+                    </div>
+                </div>
+            </ul>
+            <hr>
+            <div class="copyright">
+                &copy; 2024, RR Bank, All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
